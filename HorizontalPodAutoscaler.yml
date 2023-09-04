@@ -1,0 +1,19 @@
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: reddit-clone-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment  # or StatefulSet
+    name: reddit-clone
+  minReplicas: 1  # Minimum number of pods
+  maxReplicas: 2  # Maximum number of pods
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 80  # Set your desired CPU utilization target (80%)
+
