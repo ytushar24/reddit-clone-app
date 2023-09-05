@@ -1,6 +1,7 @@
 # Reddit Clone App
 
 This is a Reddit clone application designed to run on a Kubernetes cluster. It allows you to create and manage posts similar to the popular social platform Reddit. Below are the steps to set up and deploy the app on your own Kubernetes cluster.
+![Screenshot 2023-09-05 041953](https://github.com/ytushar24/reddit-clone-app/assets/94834234/b5a0a708-b3ae-4fa7-b267-81a9ecfc16b1)
 
 ## Prerequisites
 
@@ -72,7 +73,7 @@ Now, your Reddit clone app should be up and running on your Kubernetes cluster. 
 
 Don't forget to expose the ports in the inbound rule setting of the chosen cloud provider.
 
-![Screenshot 2023-09-05 041953](https://github.com/ytushar24/reddit-clone-app/assets/94834234/b5a0a708-b3ae-4fa7-b267-81a9ecfc16b1)
+
 ```bash
 curl -L domain.com/test
 ```
