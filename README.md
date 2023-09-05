@@ -23,4 +23,54 @@ Before you begin, ensure you have the following tools and resources installed an
 3. On the master node, initialize the cluster and generate a token:
    ```bash
    kubeadm init
+   ```
+4. Copy the generated join token from the output.
+   
+5. On the worker node, join the cluster using the token you copied:
+   ```bash
+   kubeadm join <master-node-ip>:<master-node-port> --token <token> --discovery-token-ca-cert-hash <hash>
+   ```
+## Building and Deploying the Reddit Clone App
+
+1. clone this repository to your local machine to build the Docker image:
+   ```bash
+   git clone https://github.com/ytushar24/reddit-clone-app.git
+   ```
+2. Build the Docker image for the Reddit clone app:
+   ```bash
+   cd reddit-clone
+   docker build -t reddit-clone-app:latest .
+   ```
+3. Deploy the app on the Kubernetes worker node using the provided deployment.yml file:
+   ```bash
+   cd k8s
+   kubectl apply -f deployment.yml
+   ```
+4. Deploy the service for the app on the Kubernetes worker node using the provided service.yml file:
+   ```bash
+   kubectl apply -f service.yml
+   ```
+5. Deploy the ingress resource on the Kubernetes worker node using the provided ingress.yml file:
+   ```bash
+   kubectl apply -f ingress.yml
+   ```
+6. Deploy the Horizontal Pod Autoscaler on the Kubernetes worker node using the provided HorizontalPodAutoscaler.yml file:
+   ```bash
+   kubectl apply -f HorizontalPodAutoscaler.yml
+   ```
+The Horizontal Pod Autoscaler ensures that new pods are created when the CPU utilization of the existing pods reaches 80%.
+
+Now, your Reddit clone app should be up and running on your Kubernetes cluster. You can access it through the provided Ingress URL or the nodeport specified in service.yml.
+
+Don't forget to expose the ports in the inbound rule setting of the chosen cloud provider.
+
+```bash
+curl -L domain.com/test
+```
+
+Enjoy using your Reddit clone app!
+
+
+
+   
 
