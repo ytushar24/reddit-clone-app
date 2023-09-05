@@ -59,11 +59,20 @@ Before you begin, ensure you have the following tools and resources installed an
    kubectl apply -f HorizontalPodAutoscaler.yml
    ```
 The Horizontal Pod Autoscaler ensures that new pods are created when the CPU utilization of the existing pods reaches 80%.
+Command to load test :
+```bash
+kubectl exec pod-name -- /bin/sh -c "while true; do dd if=/dev/zero of=/dev/null; done" &
+```
+You can also deploy metrics server to view the resource utilisation of woker node pods
+```
+https://signoz.io/blog/kubernetes-metrics-server/
+```
 
 Now, your Reddit clone app should be up and running on your Kubernetes cluster. You can access it through the provided Ingress URL or the nodeport specified in service.yml.
 
 Don't forget to expose the ports in the inbound rule setting of the chosen cloud provider.
 
+![Screenshot 2023-09-05 041953](https://github.com/ytushar24/reddit-clone-app/assets/94834234/b5a0a708-b3ae-4fa7-b267-81a9ecfc16b1)
 ```bash
 curl -L domain.com/test
 ```
